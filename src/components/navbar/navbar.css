@@ -1,0 +1,17 @@
+
+.NavbarColor {
+    
+    background-color: tomato!important;
+}
+
+.carritoNavbar {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbarLinks {
+    color: white!important;
+}
+

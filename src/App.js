@@ -1,17 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import  { BarraNavegacion } from "./components/navbar/Navbar";
+import { BarraNavegacion } from "./components/navbar/Navbar";
+import ItemListContainer from "./components/itemListContainer/ItemListContainer"
 
 function App() {
   return (
     <div className="App">
-      <BarraNavegacion />
-      
-      <div className="home">
-      <h1>Bienvenido a la tienda online de Viña Cobos!</h1>
+      <div className="barraNavegacion">
+        <BarraNavegacion />
       </div>
+      <div className="principal">
+        <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /></div>
 
-    
+
+
+
     </div>
   );
 }

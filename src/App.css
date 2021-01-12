@@ -2,11 +2,13 @@
   text-align: center;
 }
 
-.home {
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
+.barraNavegacion {
+  height: 10vh;
+  padding-bottom: 0;
+}
+
+.principal {
+  height: 90vh;
+  background-color: #f8f9fa;
 }
 

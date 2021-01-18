@@ -1,6 +1,7 @@
 import React from "react"
 import "./itemListContainer.css"
 import ItemCount from "../itemCount/ItemCount"
+import ItemList from "../itemList/ItemList"
 
 const ItemListContainer = ({ greetings }) => {
     return (
@@ -8,6 +9,7 @@ const ItemListContainer = ({ greetings }) => {
             <h4>{greetings}</h4>
             <br></br>
             <div>
+            <ItemList />
             <ItemCount stock={5} initial={1}/>
             </div>
         </div>

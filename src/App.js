@@ -1,6 +1,8 @@
 import './App.css';
+// import { BrowserRouter, Switch, Route  } from "react-router-dom";
 import { BarraNavegacion } from "./components/navbar/Navbar";
 import ItemListContainer from "./components/itemListContainer/ItemListContainer"
+import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
 
 function App() {
   return (
@@ -10,12 +12,7 @@ function App() {
       </div>
       <div className="principal">
         <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /></div>
-
-    
-
-
-
-
+        <ItemDetailContainer />
     </div>
   );
 }

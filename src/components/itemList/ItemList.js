@@ -5,32 +5,11 @@ import vinos from "../../assets/basesDeDatos/baseVinos";
 import "./itemList.css"
 
 
-const ItemList = () =>{
+const ItemList = ({bdVinos}) =>{
 
-    const [productos, setProductos] = useState ([])
-    
-    useEffect(() => {
-        setTimeout(() => {
-            const traerProductosBD= new Promise ((resolve,reject)=>{
-                resolve(vinos)
-                
-        
-            })
-                traerProductosBD.then( (resultado) => {
-                    console.log(resultado)
-                    setProductos(resultado)
-                    console.log(productos)
-                    return productos  //porqué no imprime el array completo en la consola?
-                })
-                .catch(err=>{console.log(`El error es ${err}`)})
-                
-                
-        }, 2000);
-            
-    }, [])
     
     
-    const catalogoProductos = productos.map((vino) =>{
+    const catalogoProductos = bdVinos.map((vino) =>{
         return(<Item key={vino.id} producto={vino}/>)
 
     })

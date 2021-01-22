@@ -4,24 +4,24 @@ import ItemDetail from "../itemDetail/ItemDetail";
 
 const id = 5
 
-const [item, setItem] = useState({})
+// const [item, setItem] = useState({})
 
     
-        const getProduct = new Promise((success, reject) => {
-                setTimeout(() => {
-                success(vinos)
-            }, 2000);
-        })
-        getProduct.then((listadoProductos) => {
-            let index = listadoProductos.findIndex(producto => producto.id === id)
-            console.log(index)
-            setItem(listadoProductos[index])
-            console.log(item)
-            return item
+//         const getProduct = new Promise((success, reject) => {
+//                 setTimeout(() => {
+//                 success(vinos)
+//             }, 2000);
+//         })
+//         getProduct.then((listadoProductos) => {
+//             let index = listadoProductos.findIndex(producto => producto.id === id)
+//             console.log(index)
+//             setItem(listadoProductos[index])
+//             console.log(item)
+//             return item
 
-        }).catch(err => {
-            console.log(`Se produjo el siguiente error: ${err}`)
-        })
+//         }).catch(err => {
+//             console.log(`Se produjo el siguiente error: ${err}`)
+//         })
 
   
 
@@ -31,40 +31,34 @@ const [item, setItem] = useState({})
 
 const ItemDetailContainer = () => {
 
-    // const [item, setItem] = useState({})
+    const [item, setItem] = useState({})
 
-    // useEffect(() => {
+    useEffect(() => {
         
-    //         const getProduct = new Promise((success, reject) => {
-    //             setTimeout(() => {
-    //                 success(vinos)
-    //             }, 2000);
-    //         })
-    //         getProduct.then((listadoProductos) => {
-    //             let index = listadoProductos.findIndex(producto => producto.id === id)
-    //             console.log(index)
-    //             setItem(listadoProductos[index])
-    //             console.log(item)
-    //             return item
+            const getProduct = new Promise((success, reject) => {
+                setTimeout(() => {
+                    success(vinos)
+                }, 2000);
+            })
+            getProduct.then((listadoProductos) => {
+                let index = listadoProductos.findIndex(producto => producto.id === id)
+                console.log(index)
+                setItem(listadoProductos[index])
+                console.log(item)
+                return item
 
-    //         }).catch(err => {
-    //             console.log(`Se produjo el siguiente error: ${err}`)
-    //         })
+            }).catch(err => {
+                console.log(`Se produjo el siguiente error: ${err}`)
+            })
 
       
-    // }, [])
+    }, [])
 
   
-
-    
-
     return (
-        <div>Item Detail container
-
+       
             <ItemDetail producto={item} />
-        </div>
-
-
+       
     )
 }
 

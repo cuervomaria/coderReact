@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Switch, Route  } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { BarraNavegacion } from "./components/navbar/Navbar";
 import ItemListContainer from "./components/itemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
@@ -11,8 +11,10 @@ function App() {
         <BarraNavegacion />
       </div>
       <div className="principal">
-        <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /></div>
+        {/* <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /> */}
         <ItemDetailContainer />
+      </div>
+      
     </div>
 
     // <div className="App">
@@ -21,7 +23,7 @@ function App() {
     //     <BarraNavegacion />
     //   </div>
     //   <Switch>
-        
+
     //     <Route path="/item">
     //       <ItemDetailContainer />
     //     </Route>
@@ -32,7 +34,7 @@ function App() {
     //     </Route>
     //   </Switch>
     // </BrowserRouter>
-  // </div>
+    // </div>
   );
 }
 

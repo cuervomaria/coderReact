@@ -28,7 +28,7 @@ let vinos = [
     "linea":"Felino",
     "varietal":"Malbec",
     "precio":1200,
-    "cantidad": 150,
+    "cantidad": 10,
     "img":vino1,
     "descripcion":"De un intenso color rojo con tonos violáceos y azules, este exquisito malbec se caracteriza por exhibir aromas a flores blancas y frutos negros junto con notas de pimienta blanca y clavo de olor. Deleita el paladar con recuerdos de regaliz y chocolate mientras se presenta amplio, suave y de taninos firmes. Es un vino elegante, equilibrado y de persistente final."
     },

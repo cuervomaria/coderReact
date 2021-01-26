@@ -1,5 +1,8 @@
 .itemCount {
     text-align: center;
-   
-    
+       
+}
+
+.btnAumentarDisminuir:hover{
+    cursor: pointer;
 }

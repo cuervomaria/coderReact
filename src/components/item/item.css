@@ -1,12 +1,15 @@
 .cardCatalogo{
     width: 18rem;
     margin: 2%;
-    
 
 }
 .foto{
     object-fit: scale-down;
     height: 30vh;
     margin: 2%;
-   
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }

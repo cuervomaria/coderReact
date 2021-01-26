@@ -6,35 +6,28 @@ import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailCont
 
 function App() {
   return (
+
+
     <div className="App">
-      <div className="barraNavegacion">
-        <BarraNavegacion />
-      </div>
-      <div className="principal">
-        {/* <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /> */}
-        <ItemDetailContainer />
-      </div>
-      
+      <BrowserRouter>
+        <div className="barraNavegacion">
+          <BarraNavegacion />
+        </div>
+        <div className="principal">
+          <Switch>
+            <Route path="/item/:id">
+              <ItemDetailContainer />
+            </Route>
+            <Route path="/category/:categoryId">
+              <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+            </Route>
+            <Route path="/">
+              <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
     </div>
-
-    // <div className="App">
-    // <BrowserRouter>
-    //   <div className="barraNavegacion">
-    //     <BarraNavegacion />
-    //   </div>
-    //   <Switch>
-
-    //     <Route path="/item">
-    //       <ItemDetailContainer />
-    //     </Route>
-    //     <Route path="/">
-    //       <div className="principal">
-    //         <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
-    //       </div>
-    //     </Route>
-    //   </Switch>
-    // </BrowserRouter>
-    // </div>
   );
 }
 

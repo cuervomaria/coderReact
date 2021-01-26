@@ -33,12 +33,12 @@ const onAdd =() =>{
         <div className="itemCount">
             <Container >
                 <Row className="d-flex justify-content-between ">
-                    <Col xs={4} className="text-center" onClick={disminuir}>-</Col>
+                    <Col xs={4} className="text-center btnAumentarDisminuir" onClick={disminuir}>-</Col>
                     <Col xs={4} className="text-center"  ><span className="text-center" > {cantidad} </span></Col>
-                    <Col xs={4} className="text-center" onClick={aumentar}>+</Col>
+                    <Col xs={4} className="text-center btnAumentarDisminuir" onClick={aumentar}>+</Col>
                 </Row>
                 <Row>
-                    <Col className="d-flex justify-content-center " style={{"backgroundColor":"yellow"}}>
+                    <Col className="d-flex justify-content-center ">
                         <Button variant="outline-dark" onClick={onAdd}>Agregar</Button>
                     </Col>
                 </Row>

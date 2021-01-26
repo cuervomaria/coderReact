@@ -1,8 +1,17 @@
-# Getting Started with Create React App
+# PROYECTO DE ECOMMERCE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto de ecommerce ha sido desarrollado en el marco de un curso de ReactJS en [Coderhouse](https://www.coderhouse.com).
 
-## Available Scripts
+Para crear la aplicación se utilizó [Create React App](https://github.com/facebook/create-react-app).
+
+## Librerías utilizadas:
+
+Se han utilizado las siguientes librerías :
+
+### [`- React-Bootstrap`](https://react-bootstrap.github.io/) 
+### [`- React-Router-Dom`](https://reactrouter.com/)
+
+<!-- ## Available Scripts
 
 In the project directory, you can run:
 
@@ -67,4 +76,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->

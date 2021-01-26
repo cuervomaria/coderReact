@@ -1,7 +1,6 @@
-import React, {useState, useEffect}from "react";
+import React from "react";
 // import { CardDeck } from "react-bootstrap";
 import Item from "../item/Item";
-import vinos from "../../assets/basesDeDatos/baseVinos";
 import "./itemList.css"
 
 

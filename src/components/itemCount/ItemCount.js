@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Container, Row, Col, Button} from 'react-bootstrap';
 import "./itemCount.css";
 
-const ItemCount = ({stock, initial}) => {
+const ItemCount = ({stock, initial=1, onAdd2}) => {
 
 const [cantidad, setCantidad] = useState (initial);
 
@@ -24,10 +24,12 @@ const disminuir = ()=>{
     }
 };
 
-const onAdd =() =>{
-    cantidad === 0 ? alert("debe agregar productos para poder agregarlos al carrito") : console.log(cantidad)
+
+
+// const onAdd =() =>{
+//     cantidad === 0 ? alert("debe agregar productos para poder agregarlos al carrito") : console.log(cantidad) 
     
-}
+// }
 
     return (
         <div className="itemCount">
@@ -39,7 +41,7 @@ const onAdd =() =>{
                 </Row>
                 <Row>
                     <Col className="d-flex justify-content-center ">
-                        <Button variant="outline-dark" onClick={onAdd}>Agregar</Button>
+                        <Button variant="outline-dark"  onClick={onAdd2(cantidad)}>Agregar {cantidad} productos</Button>
                     </Col>
                 </Row>
             </Container>

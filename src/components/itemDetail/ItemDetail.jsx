@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import { Card, Container } from "react-bootstrap"
+import ItemCount from "../itemCount/ItemCount";
 import "./itemDetail.css"
 
 const ItemDetail = ({ producto }) => {
+
+    const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
+
+    const capturarQ = (value)=>{
+        setCantidadSeleccionada(value)
+        console.log(cantidadSeleccionada)
+     
+    }
+
     return (
 
         <Container>
@@ -17,8 +27,8 @@ const ItemDetail = ({ producto }) => {
                         <hr />
                         <p><b>Precio:</b>{` $ ${producto.precio}`}</p>
                     </Card.Text>
+                    <ItemCount stock={producto.cantidad} onAdd2={capturarQ}/>
                 </Card.Body>
-               
             </Card>
         </Container>
 

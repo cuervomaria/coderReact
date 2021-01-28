@@ -41,7 +41,7 @@ const disminuir = ()=>{
                 </Row>
                 <Row>
                     <Col className="d-flex justify-content-center ">
-                        <Button variant="outline-dark"  onClick={onAdd2(cantidad)}>Agregar {cantidad} productos</Button>
+                        <Button variant="outline-dark"  onClick={()=> onAdd2(cantidad)}>Agregar {cantidad} productos</Button>
                     </Col>
                 </Row>
             </Container>

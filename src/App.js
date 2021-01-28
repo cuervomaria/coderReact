@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { BarraNavegacion } from "./components/navbar/Navbar";
 import ItemListContainer from "./components/itemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
+import Cart from "./components/cart/Cart";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route path="/category/:categoryId">
               <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+            </Route>
+            <Route path="/cart">
+              <Cart />
             </Route>
             <Route path="/">
               <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />

@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Card, Container, Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import ItemCount from "../itemCount/ItemCount";
 import "./itemDetail.css"
+import { CartContext } from "../../context/CartContext";
 
 const ItemDetail = ({ producto }) => {
 
+    const { addItem } = useContext(CartContext)
+
     const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
-    const [showButton, setShowButton]= useState (false)
-   // let validarClick = false
+    const [showButton, setShowButton] = useState(false)
 
     const capturarQ = (value) => {
         setCantidadSeleccionada(value)
         setShowButton(true)
-       
     }
 
     return (
@@ -29,13 +30,18 @@ const ItemDetail = ({ producto }) => {
                         <hr />
                         <p><b>Precio:</b>{` $ ${producto.precio}`}</p>
                     </Card.Text>
-                    
-                    
                     {/* <ItemCount stock={producto.cantidad} onAdd2={capturarQ} /> */}
-                    { showButton? 
-                       <Link to="/cart"><Button variant="outline-dark">Terminar mi compra de {cantidadSeleccionada} productos</Button></Link>:
-                       <ItemCount stock={producto.cantidad} onAdd2={capturarQ} />                    }
-                    
+
+                    {/* {showButton ?
+                        <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> :
+                        <ItemCount stock={producto.cantidad} onAdd2={capturarQ} />} */}
+
+                       <ItemCount stock={producto.cantidad} onAdd2={capturarQ}/>
+                       
+                    <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button>
+
+                        {/* <p>Cantidad seleccionada {cantidadSeleccionada} a agregar</p>
+                    <ItemCount stock={producto.cantidad} onAdd2={()=> addItem({producto},cantidadSeleccionada)} /> */}
                 </Card.Body>
             </Card>
         </Container>
@@ -43,7 +49,7 @@ const ItemDetail = ({ producto }) => {
 
 
         // <div>
-        //     <img src={producto.img} alt={`${producto.linea} - ${producto.varietal}`}/>
+                //     <img src={producto.img} alt={`${producto.linea} - ${producto.varietal}`} />
         //     <h3>{producto.linea}</h3>
         //     <h4>{producto.varietal}</h4>
         //     <p><b>Precio:</b>{`$ ${producto.precio}`}</p>

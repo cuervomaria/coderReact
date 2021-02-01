@@ -16,23 +16,27 @@ function App() {
           <BarraNavegacion />
         </div>
         <div className="principal">
+        <CartContextProvider>
           <Switch>
-            <CartContextProvider>
+            
               <Route path="/item/:id">
                 <ItemDetailContainer />
               </Route>
               <Route path="/cart">
                 <Cart />
               </Route>
-            </CartContextProvider>
+            
             <Route path="/category/:categoryId">
               <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
             </Route>
             <Route path="/">
               <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
             </Route>
+            
           </Switch>
+          </CartContextProvider>
         </div>
+        
       </BrowserRouter>
     </div>
   );

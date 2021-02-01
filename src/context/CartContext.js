@@ -9,7 +9,7 @@ export const CartContextProvider = ({ children }) => {
 
     const addItem = ({ producto }, cantidad) => {
         let index = cart.findIndex(item => item.id === producto.id)
-        if (index != -1) {
+        if (index !== -1) {
             alert("El producto ya se encuentra agregado al carrito")
         } else {
             setCart([...cart, {
@@ -27,7 +27,7 @@ export const CartContextProvider = ({ children }) => {
 
     const removeItem = (id) => {
         let index = cart.findIndex(item => item.id === id)
-        if (index != -1) {
+        if (index !== -1) {
             setCart(cart.splice(index, 1))
         }
 
@@ -40,8 +40,8 @@ export const CartContextProvider = ({ children }) => {
     const isInCart = (id) => {
         let index = cart.findIndex(item => item.id === id)
         let existe
-        if (index != -1) {
-            exite = true
+        if (index !== -1) {
+            existe = true
         } else {
             existe = false
         }
@@ -52,7 +52,7 @@ export const CartContextProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={cart, addItem, removeItem, clear, isInCart}>
+        <CartContext.Provider value={{cart, addItem, removeItem, clear, isInCart}}>
             {children}
         </CartContext.Provider>
     )

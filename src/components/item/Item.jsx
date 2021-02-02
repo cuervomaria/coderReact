@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ItemCount from "../itemCount/ItemCount"
+// import ItemCount from "../itemCount/ItemCount"
 import "./item.css"
 
 const Item = ({ producto }) => {

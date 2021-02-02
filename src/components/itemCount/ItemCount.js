@@ -1,13 +1,19 @@
-import React, {useState, useContext } from "react"; //se importa el useContext
+import React, {useState, useEffect} from "react"; //se importa el useContext
 import {Container, Row, Col, Button} from 'react-bootstrap';
 import "./itemCount.css";
-import { CartContext } from "../../context/CartContext"; //se agrega por el context
 
-const ItemCount = ({stock, initial=1, onAdd2}) => {
 
-const [cantidad, setCantidad] = useState (initial); //se reemplaza por la línea de más abajo que tiene en cuenta el context
+const ItemCount = ({stock, initial, onAdd2}) => {
+    console.log("initial", initial)
+const [cantidad, setCantidad] = useState(initial); 
+ console.log("cantidad", cantidad)
 
-const {cart, addItem} = useContext(CartContext)
+//  useEffect(() => {
+//      if(initial>1){
+//          setCantidad(initial)
+//      }
+//  }, [initial])
+
 
 const aumentar = ()=>{
     

@@ -11,33 +11,36 @@ function App() {
 
 
     <div className="App">
+
       <BrowserRouter>
-        <div className="barraNavegacion">
-          <BarraNavegacion />
-        </div>
-        <div className="principal">
         <CartContextProvider>
-          <Switch>
-            
+          <div className="barraNavegacion">
+            <BarraNavegacion />
+          </div>
+          <div className="principal">
+
+            <Switch>
+
               <Route path="/item/:id">
                 <ItemDetailContainer />
               </Route>
               <Route path="/cart">
                 <Cart />
               </Route>
-            
-            <Route path="/category/:categoryId">
-              <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
-            </Route>
-            <Route path="/">
-              <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
-            </Route>
-            
-          </Switch>
-          </CartContextProvider>
-        </div>
-        
+
+              <Route path="/category/:categoryId">
+                <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+              </Route>
+              <Route path="/">
+                <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+              </Route>
+
+            </Switch>
+
+          </div>
+        </CartContextProvider>
       </BrowserRouter>
+
     </div>
   );
 }

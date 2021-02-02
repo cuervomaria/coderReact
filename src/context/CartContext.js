@@ -6,9 +6,9 @@ export const CartContextProvider = ({ children }) => {
 
      const [cart, setCart] = useState([])
      //const [quantity, setQuantity] = useState(0) 
+    console.log(cart)
 
-
-    const addItem = ({ producto }, cantidad) => {
+    const addItem = (producto, cantidad) => {
         // console.log(`este es el producto ${producto} y esta la cantidad ${cantidad}`)
         let index = cart.findIndex(item => item.id === producto.id)
         if (index !== -1) {
@@ -54,7 +54,7 @@ export const CartContextProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={cart,addItem}>
+        <CartContext.Provider value={{cart,addItem}}>
             {children}
         </CartContext.Provider>
     )

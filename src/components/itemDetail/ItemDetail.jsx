@@ -1,21 +1,29 @@
 import React, { useState, useContext } from "react";
 import { Card, Container, Button } from "react-bootstrap"
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import ItemCount from "../itemCount/ItemCount";
 import "./itemDetail.css"
 import { CartContext } from "../../context/CartContext";
 
 const ItemDetail = ({ producto }) => {
 
-    const { addItem } = useContext(CartContext)
+    const {cart, addItem } = useContext(CartContext)
 
-    const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
-    const [showButton, setShowButton] = useState(false)
+    // const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
+    // const [showButton, setShowButton] = useState(false)
 
     const capturarQ = (value) => {
-        setCantidadSeleccionada(value)
-        setShowButton(true)
+        // setCantidadSeleccionada(value)
+        // setShowButton(true)
+        console.log("producto", producto)
+        console.log("cantidad", value)
+        addItem(producto, value)
     }
+// Utils
+        const index = cart.findIndex(prod=>prod.id===producto.id)
+        const initial = index ===-1 ? 1 : cart[index].cantidad
+        // console.log("index", index)
+        // console.log("initial", initial)
 
     return (
         <Container>
@@ -36,9 +44,9 @@ const ItemDetail = ({ producto }) => {
                         <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> :
                         <ItemCount stock={producto.cantidad} onAdd2={capturarQ} />} */}
 
-                       <ItemCount stock={producto.cantidad} onAdd2={capturarQ}/>
+                       <ItemCount stock={producto.cantidad} onAdd2={capturarQ} initial={initial}/>
                        
-                    <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button>
+                    {/* <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> */}
 
                         {/* <p>Cantidad seleccionada {cantidadSeleccionada} a agregar</p>
                     <ItemCount stock={producto.cantidad} onAdd2={()=> addItem({producto},cantidadSeleccionada)} /> */}

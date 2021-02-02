@@ -1,10 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react"; //se importa el useContext
 import {Container, Row, Col, Button} from 'react-bootstrap';
 import "./itemCount.css";
 
-const ItemCount = ({stock, initial=1, onAdd2}) => {
 
-const [cantidad, setCantidad] = useState (initial);
+const ItemCount = ({stock, initial, onAdd2}) => {
+    console.log("initial", initial)
+const [cantidad, setCantidad] = useState(initial); 
+ console.log("cantidad", cantidad)
+
+//  useEffect(() => {
+//      if(initial>1){
+//          setCantidad(initial)
+//      }
+//  }, [initial])
+
 
 const aumentar = ()=>{
     

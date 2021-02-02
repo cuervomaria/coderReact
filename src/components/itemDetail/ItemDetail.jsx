@@ -8,6 +8,7 @@ import { CartContext } from "../../context/CartContext";
 const ItemDetail = ({ producto }) => {
 
     const {cart, addItem } = useContext(CartContext)
+    
 
     // const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
     // const [showButton, setShowButton] = useState(false)

@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export const CartContext = React.createContext([])
 
 export const CartContextProvider = ({ children }) => {
 
-     const [cart, setCart] = useState([])
-     //const [quantity, setQuantity] = useState(0) 
-    console.log("carrito", cart)
+    const [cart, setCart] = useState([])
+    //const [quantity, setQuantity] = useState(0) 
 
     const addItem = (producto, cantidad) => {
         // console.log(`este es el producto ${producto} y esta la cantidad ${cantidad}`)
@@ -25,17 +24,37 @@ export const CartContextProvider = ({ children }) => {
         }
     }
 
-
+    const removeItem = (id) => {
+        
+        //let index = cart.findIndex(item => item.id === id)
+        //let carrito = cart  //hice esta variable intermedia, porque como el splice devuelve un array con el producto eliminado y modifica el array original, no sé si al ser un state lo estaba modificando o no 
+        //  console.log("index", index)
+        
+            //const eliminado = cart.splice(index, 1)
+            //console.log("producto eliminado", eliminado)
+            //console.log("producto quedan", carrito)
+            setCart((carro)=>carro.filter(item => item.id !== id))
+        
+    }
 
     // const removeItem = (id) => {
-    //     let index = cart.findIndex(item => item.id === id)
-    //     if (index !== -1) {
-    //         setCart(cart.splice(index, 1))
-    //     }
+    //     const newCart = cart.filter(item => item.id !== id);
+    //     setCart(newCart);
+    //   };
 
-    // }
+   useEffect(() => {
+       console.log("cart", cart)
+       
+   }, [cart])
 
-    // const clear = () => {
+    return (
+        <CartContext.Provider value={{ cart, addItem, removeItem }}>
+            {children}
+        </CartContext.Provider>
+    )
+
+
+     // const clear = () => {
     //     setCart([])
     // }
 
@@ -51,11 +70,4 @@ export const CartContextProvider = ({ children }) => {
     //     return existe
     // }
 
-
-
-    return (
-        <CartContext.Provider value={{cart,addItem}}>
-            {children}
-        </CartContext.Provider>
-    )
 }

@@ -148,7 +148,8 @@ const ItemListContainer = ({ greetings }) => {
 
             const db = getFirestore();
             const itemsFirebase = db.collection("vinos")
-            const categoryItems = itemsFirebase.where("linea","==",categoryId)
+            //const categoryItems = itemsFirebase.where("linea","==",categoryId)
+            const categoryItems = itemsFirebase.where("categoryId","==",categoryId)
             categoryItems.get()
                 .then((queryFiltered) => {
                     console.log(queryFiltered)

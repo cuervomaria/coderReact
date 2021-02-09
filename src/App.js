@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BarraNavegacion2 } from "./components/navbar/Navbar2";
 import { BarraNavegacion } from "./components/navbar/Navbar";
 import ItemListContainer from "./components/itemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
@@ -15,7 +16,8 @@ function App() {
       <BrowserRouter>
         <CartContextProvider>
           <div className="barraNavegacion">
-            <BarraNavegacion />
+            <BarraNavegacion2 />
+            {/* <BarraNavegacion /> */}
           </div>
           <div className="principal">
 

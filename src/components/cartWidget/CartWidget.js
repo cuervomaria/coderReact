@@ -5,7 +5,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import {CartContext} from "../../context/CartContext"
 import "./cartWidget.css"
 
-const Carrito = () => {
+const CartWidget = () => {
 
     const {cart} = useContext(CartContext)
     
@@ -30,4 +30,4 @@ const Carrito = () => {
     )
 }
 
-export default Carrito
+export default CartWidget

@@ -45,7 +45,7 @@ const ItemDetail = ({ producto }) => {
                         <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> :
                         <ItemCount stock={producto.cantidad} onAdd2={capturarQ} />} */}
 
-                       <ItemCount stock={producto.cantidad} onAdd2={capturarQ} initial={initial}/>
+                       <ItemCount stock={producto.stock} onAdd2={capturarQ} initial={initial}/>
                        
                     {/* <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> */}
 

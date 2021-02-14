@@ -6,8 +6,12 @@ import ItemListContainer from "./components/itemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
 import { CartContextProvider } from "./context/CartContext";
 import Cart from "./components/cart/Cart";
+import CheckoutContainer from "./components/checkoutContainer/CheckoutContainer";
+import Prueba from "./prueba";
 
 function App() {
+
+
   return (
 
 
@@ -29,11 +33,15 @@ function App() {
               <Route path="/cart">
                 <Cart />
               </Route>
+              <Route path="/checkout">
+                <CheckoutContainer />
+              </Route>
 
               <Route path="/category/:categoryId">
                 <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
               </Route>
               <Route path="/">
+                {/* <Prueba /> */}
                 <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
               </Route>
 

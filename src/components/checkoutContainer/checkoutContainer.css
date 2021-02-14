@@ -1,0 +1,18 @@
+.padre {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkoutWrapper{
+    width: 50vw;
+    height: 50vh;
+    border: solid;
+    border-color: black;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    align-content: space-around;
+}
+

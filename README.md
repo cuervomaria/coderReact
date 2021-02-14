@@ -8,8 +8,16 @@ Para crear la aplicación se utilizó [Create React App](https://github.com/face
 
 Se han utilizado las siguientes librerías :
 
-### [`- React-Bootstrap`](https://react-bootstrap.github.io/) 
-### [`- React-Router-Dom`](https://reactrouter.com/)
+[`- React-Bootstrap`](https://react-bootstrap.github.io/) version 1.4.0
+
+[`- React-Router-Dom`](https://reactrouter.com/) version 5.2.0
+
+FontAwesome
+
+Firebase
+
+## Para utilizar este código........
+
 
 <!-- ## Available Scripts
 

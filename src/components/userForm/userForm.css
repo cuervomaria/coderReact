@@ -1,0 +1,14 @@
+.formularioWrapper {
+    height: 100%;
+    background-color: hotpink;
+}
+
+.formulario {
+    height:max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    /* align-content: space-around; */
+    background-color: lawngreen;
+   }
+

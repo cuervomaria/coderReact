@@ -48,7 +48,7 @@ const BarraNavegacion2 = () => {
                     {/* <Nav.Link href="/">Home</Nav.Link> */}
                     <NavDropdown title="Lineas" id="lineas">
                         {categorias.map(cat=>
-                        <Link className="dropdown-item" to={`/category/${cat.id}`}>{cat.name}</Link>)}
+                        <Link className="dropdown-item" key={cat.id} to={`/category/${cat.name}`}>{cat.name}</Link>)}
                         
                         
                         {/* <Link className="dropdown-item" to="/category/Felino">Felino</Link>

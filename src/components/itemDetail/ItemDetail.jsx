@@ -19,6 +19,7 @@ const ItemDetail = ({ producto }) => {
         console.log("producto", producto)
         console.log("cantidad", value)
         addItem(producto, value)
+        
     }
 // Utils
         const index = cart.findIndex(prod=>prod.id===producto.id)

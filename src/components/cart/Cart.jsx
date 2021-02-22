@@ -9,7 +9,7 @@ import "./cart.css";
 
 export default function Cart() {
 
-    const { cart, removeItem, total, cantidadTotal } = useContext(CartContext)
+    const { cart, removeItem, total, cantidadTotal, clearCart } = useContext(CartContext)
     // const [showForm, setShowForm] = useState(false)
     console.log("cart", cart)
 
@@ -64,7 +64,8 @@ export default function Cart() {
                     </tr>
                     <tr>
                         {/* <td colspan="6"><Button variant="outline-dark" onClick={handleShowForm}>Continuar la compra </Button> </td> */}
-                        <td colspan="6"><Link to="../checkout"> <Button variant="outline-dark">Continuar la compra </Button> </Link> </td>
+                        <td colspan="2"> <Button onClick={()=>{clearCart()}} variant="outline-danger">Vaciar el carrito <FontAwesomeIcon icon={faTrashAlt} /> </Button> </td>
+                        <td colspan="4"><Link to="../checkout"> <Button variant="outline-dark">Continuar la compra </Button> </Link> </td>
                     </tr>
                 </React.Fragment>
             )

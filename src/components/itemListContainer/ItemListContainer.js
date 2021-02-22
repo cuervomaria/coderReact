@@ -5,6 +5,8 @@ import { getFirestore } from "../../firebase/index"
 // import vinos from "../../assets/basesDeDatos/baseVinos"
 // import ItemCount from "../itemCount/ItemCount"
 import ItemList from "../itemList/ItemList"
+import Loading from "../loading/Loading";
+import BusquedaInexistente from "../busquedaInexistente/BusquedaInexistente"
 
 const ItemListContainer = ({ greetings }) => {
 
@@ -120,20 +122,27 @@ const ItemListContainer = ({ greetings }) => {
 
     const [productos, setProductos] = useState([])
     const { categoryId } = useParams()
+    const [idExists, setIdExists] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [texto, setTexto] = useState("")
 
     useEffect(() => {
         console.log("categoryID", { categoryId })
+        setLoading(true)
+        
 
         if (categoryId === undefined) {
-
             const db = getFirestore();
             const itemsFirebase = db.collection("vinos")
             itemsFirebase.get()
                 .then((querySnapshot) => {
                     if (querySnapshot.size === 0) {
                         console.log("No hay items")
+                        setIdExists(false)
+                        setTexto("No hay productos para mostrar")
                     }
                     let arrayItems = querySnapshot.docs.map(doc => {
+                        setIdExists(true)
                         return ({
                             id: doc.id,
                             ...doc.data()
@@ -141,22 +150,28 @@ const ItemListContainer = ({ greetings }) => {
                     })
                     console.log(arrayItems)
                     setProductos(arrayItems)
+                }).finally(()=>{setLoading(false)
+
                 })
+            
         }
 
         else {
-
+            
             const db = getFirestore();
             const itemsFirebase = db.collection("vinos")
             //const categoryItems = itemsFirebase.where("linea","==",categoryId)
-            const categoryItems = itemsFirebase.where("categoryId","==",categoryId)
+            const categoryItems = itemsFirebase.where("categoryId", "==", categoryId)
             categoryItems.get()
                 .then((queryFiltered) => {
                     console.log(queryFiltered)
                     if (queryFiltered.size === 0) {
                         console.log("No results")
+                        setIdExists(false)
+                        setTexto("No hay productos en la categoría seleccionada")
                     }
                     let arrayFilteredItems = queryFiltered.docs.map(doc => {
+                        setIdExists(true)
                         return ({
                             id: doc.id,
                             ...doc.data()
@@ -164,9 +179,16 @@ const ItemListContainer = ({ greetings }) => {
                     })
                     console.log("arrayFilteredItems", arrayFilteredItems)
                     setProductos(arrayFilteredItems)
-                })
+                }).finally(()=>{
+                    setLoading(false)
+        
 
+                })
+            
+            
         }
+        
+           
     }, [categoryId])
 
     // useEffect(() => {
@@ -209,13 +231,19 @@ const ItemListContainer = ({ greetings }) => {
 
 
 
+    
 
     return (
         <div className="container itemListContainer">
             <h4>{greetings}</h4>
             <br></br>
             <div>
-                <ItemList bdVinos={productos} />
+                {loading ?
+                    <Loading padTop={true}/> :
+                    idExists ?
+                        <ItemList bdVinos={productos} /> :
+                        <BusquedaInexistente texto={texto} />
+                }
                 {/* <ItemCount stock={5} initial={1}/> */}
             </div>
         </div>

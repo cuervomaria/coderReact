@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { BarraNavegacion2 } from "./components/navbar/Navbar2";
 import { BarraNavegacion } from "./components/navbar/Navbar";
 import ItemListContainer from "./components/itemListContainer/ItemListContainer"
+import ItemListContainer2 from "./components/itemListContainer/ItemListContainer2"
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
 import { CartContextProvider } from "./context/CartContext";
 import Cart from "./components/cart/Cart";
@@ -37,12 +38,14 @@ function App() {
                 <CheckoutContainer />
               </Route>
 
-              <Route path="/category/:categoryId">
-                <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+              <Route path="/category/:categoryName">
+                {/* <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /> */}
+                <ItemListContainer2 greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
               </Route>
               <Route path="/">
                 {/* <Prueba /> */}
-                <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+                <ItemListContainer2 greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
+                {/* <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /> */}
               </Route>
 
             </Switch>

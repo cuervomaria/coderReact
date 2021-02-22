@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 //import vinos from "../../assets/basesDeDatos/baseVinos"
 import { getFirestore } from "../../firebase/index"
 import ItemDetail from "../itemDetail/ItemDetail";
+import Loading from "../loading/Loading";
+import BusquedaInexistente from "../busquedaInexistente/BusquedaInexistente"
 
 //  const id = 5
 
@@ -17,29 +19,35 @@ const ItemDetailContainer = () => {
     }, [id])
 
     const [item, setItem] = useState({})
+    const [idExists, setIdExists] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         const db = getFirestore()
-
         const itemsFirebase = db.collection("vinos")
         const product = itemsFirebase.doc(id)
         product.get()
-            .then((doc)=>{
-                if(!doc.exists){
+            .then((doc) => {
+                if (!doc.exists) {
                     console.log("no existe el item")
+                    setIdExists(false)
                     return
                 }
                 console.log("item found", doc)
+                setIdExists(true)
                 setItem({
-                    id:doc.id,
+                    id: doc.id,
                     ...doc.data()
-                
+
                 })
-            }).catch((error)=>{
+            }).catch((error) => {
                 console.log("Error searching items", error)
+            }).finally(()=>{
+                setLoading(false)
             })
-        
-        
+
+
     }, []);
 
     // useEffect(() => {
@@ -63,10 +71,13 @@ const ItemDetailContainer = () => {
     // }, [])
 
 
+    if (loading) {
+        return <Loading padTop= {true} />
+    }
     return (
-
-        <ItemDetail producto={item} />
-
+        <React.Fragment>
+            { idExists ? <ItemDetail producto={item} /> : <BusquedaInexistente texto="El producto seleccionado no existe"/>}
+        </React.Fragment>
     )
 }
 

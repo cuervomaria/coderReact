@@ -4,8 +4,29 @@ export const CartContext = React.createContext([])
 
 export const CartContextProvider = ({ children }) => {
 
-    const [cart, setCart] = useState([])
-    //const [quantity, setQuantity] = useState(0) 
+    // const carritoInicial = () => {
+    //     if (localStorage.cartItems != undefined && localStorage.length > 0) {
+    //         return (JSON.parse(localStorage.cartItems))
+    //     } else {
+    //         return ([])
+    //     }
+    // }
+
+    /*LEE LA INFORMACIÓN DEL CARRITO EN EL LOCAL STORAGE*/
+
+    const carritoInicial = localStorage.cartItems != undefined && localStorage.length > 0 ? 
+            JSON.parse(localStorage.cartItems)
+            :
+            []
+    
+    
+    const [cart, setCart] = useState(carritoInicial)
+
+    useEffect(() => {
+        localStorage.setItem("cartItems", JSON.stringify(cart))
+        
+    }, [cart])
+
 
     const addItem = (producto, cantidad) => {
         // console.log(`este es el producto ${producto} y esta la cantidad ${cantidad}`)
@@ -34,20 +55,20 @@ export const CartContextProvider = ({ children }) => {
         )
     }, 0)
 
- 
+
 
 
     const removeItem = (id) => {
-        
+
         //let index = cart.findIndex(item => item.id === id)
         //let carrito = cart  //hice esta variable intermedia, porque como el splice devuelve un array con el producto eliminado y modifica el array original, no sé si al ser un state lo estaba modificando o no 
         //  console.log("index", index)
-        
-            //const eliminado = cart.splice(index, 1)
-            //console.log("producto eliminado", eliminado)
-            //console.log("producto quedan", carrito)
-            setCart((carro)=>carro.filter(item => item.id !== id))
-        
+
+        //const eliminado = cart.splice(index, 1)
+        //console.log("producto eliminado", eliminado)
+        //console.log("producto quedan", carrito)
+        setCart((carro) => carro.filter(item => item.id !== id))
+
     }
 
     const clearCart = () => {
@@ -59,10 +80,10 @@ export const CartContextProvider = ({ children }) => {
     //     setCart(newCart);
     //   };
 
-   useEffect(() => {
-       console.log("cart", cart)
-       
-   }, [cart])
+    useEffect(() => {
+        console.log("cart", cart)
+
+    }, [cart])
 
     return (
         <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, total, cantidadTotal }}>
@@ -71,7 +92,7 @@ export const CartContextProvider = ({ children }) => {
     )
 
 
-    
+
 
     // const isInCart = (id) => {
     //     let index = cart.findIndex(item => item.id === id)

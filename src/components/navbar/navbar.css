@@ -6,9 +6,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    
 }
 
- .nav-link, .navbar-dark, .navbar-nav{
+ .nav-link, .navbar-dark, .navbar-nav, .linkConsulta{
     color: white!important;
 }
 

@@ -6,6 +6,7 @@ import ItemListContainer from "./components/itemListContainer/ItemListContainer"
 import ItemListContainer2 from "./components/itemListContainer/ItemListContainer2"
 import ItemDetailContainer from "./components/itemDetailContainer/ItemDetailContainer";
 import { CartContextProvider } from "./context/CartContext";
+import OrderCheckContainer from "./components/orderCheckContainer/OrderCheckContainer"
 import Cart from "./components/cart/Cart";
 import CheckoutContainer from "./components/checkoutContainer/CheckoutContainer";
 import Prueba from "./prueba";
@@ -42,6 +43,12 @@ function App() {
                 {/* <ItemListContainer greetings={"Bienvenido a la tienda online de Viña Cobos!"} /> */}
                 <ItemListContainer2 greetings={"Bienvenido a la tienda online de Viña Cobos!"} />
               </Route>
+
+              <Route path="/orderCheck">
+                <OrderCheckContainer />
+              </Route>
+
+
               <Route path="/">
                 {/* <Prueba /> */}
                 <ItemListContainer2 greetings={"Bienvenido a la tienda online de Viña Cobos!"} />

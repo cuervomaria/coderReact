@@ -52,6 +52,8 @@ export default function Order({ user }) {
             //date: new Date(),
             date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: total,
+            cantidadTotal: cantidadTotal,
+            estado: "Generada"
         }
         // console.log(Object.keys(order).length !== 0)
         setOrder(newOrder)

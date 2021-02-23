@@ -45,7 +45,7 @@ const BarraNavegacion2 = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mx-auto">
-                    {/* <Nav.Link href="/">Home</Nav.Link> */}
+                   
                     <NavDropdown title="Lineas" id="lineas">
                         {categorias.map(cat=>
                         <Link className="dropdown-item" key={cat.id} to={`/category/${cat.name}`}>{cat.name}</Link>)}
@@ -58,6 +58,10 @@ const BarraNavegacion2 = () => {
                         <Link className="dropdown-item" to="/category/Volturno">Volturno</Link>
                         <Link className="dropdown-item" to="/category/Cobos">Cobos</Link> */}
                     </NavDropdown>
+                    <div>
+                    <Nav.Link className="mr-0"><Link className="linkConsulta" to="../orderCheck">Consultar Orden</Link></Nav.Link>
+                    </div>
+                    {/* <Nav.Link><Link className="linkConsulta" to="../orderCheck">Consultar Orden</Link></Nav.Link> */}
                     {/* <NavDropdown title="Varietal" id="varietal">
                         <NavDropdown.Item href="#action/3.1">Malbec</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Cabernet Sauvignon</NavDropdown.Item>
@@ -68,6 +72,7 @@ const BarraNavegacion2 = () => {
                     </NavDropdown> */}
                 </Nav>
                 <div className="carritoNavbar">
+                
                     <CartWidget />
                 </div>
 

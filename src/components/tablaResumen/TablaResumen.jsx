@@ -1,54 +1,51 @@
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 
+// Se arma una tabla que muestra el resumen de la compra que se está por efectuar (en cart) o el resumen de una orden de compra ya efectuada en (orderCheckContainer)
 
-export default function TablaResumen({textLastCol, array, handleEliminarProducto, icono, cantidadTotal, total, handleVaciarCarrito, showCartComponents}) {
-    
-    
+//Existen funciones (como eliminar un item, vaciar carrito, etc) que sólo tienen sentido que se muestren si está en el cart, no así cuando se consulta una orden de compra ya efectuada, por lo que tiene un renderizado condicional si desde el componente que lo está renderizando le pasa por props que los renderice (showCartComponents=true)
+
+export default function TablaResumen({ textLastCol, array, handleEliminarProducto, icono, cantidadTotal, total, handleVaciarCarrito, showCartComponents }) {
+
 
     const resumenCompra = () => {
-     
-        const productosSeleccionados = array.map((producto, i) => {
-            return (
-                <React.Fragment>
-                    <tr key={producto.id}>
+
+        //Hace un mapeo por todos los productos del array que se le pase (carrito en caso de cart, y orden en caso de OrderCheck) y construye una tabla con el detalle de los productos
+
+        const productosSeleccionados = array.map((producto, i) => (
+                    <tr key={`${producto.id}-${i}`}>
                         <td>{i + 1}</td>
                         <td>{producto.linea}-{producto.varietal}</td>
                         <td>{producto.cantidad}</td>
-                        <td>$ {producto.precio}</td>
-                        <td>$ {producto.cantidad * producto.precio}</td>
-                        { showCartComponents && <td onClick={()=>handleEliminarProducto(producto.id)} className="iconLink"> <FontAwesomeIcon icon={icono} /></td>}
-                        
+                        <td>$ {new Intl.NumberFormat("de-DE").format(producto.precio)}</td>
+                        <td>$ {new Intl.NumberFormat("de-DE").format(producto.precio * producto.cantidad)}</td>
+                        {showCartComponents && <td onClick={() => handleEliminarProducto(producto.id)} className="iconLink"> <FontAwesomeIcon icon={icono} /></td>}
                     </tr>
+            ))
 
-                </React.Fragment>
-            )
-        })
 
-       
+        //Se agrega la línea de totales y de los botones para vaciar el carrito o continuar la compra para el caso del cart. 
 
         const totales = () => {
             return (
-                <React.Fragment>
+                <React.Fragment key="totales">
                     <tr>
                         <td></td>
                         <td><b>TOTAL</b></td>
                         <td>{cantidadTotal}</td>
                         <td></td>
-                        <td>$ {total} </td>
+                        <td>$ {new Intl.NumberFormat("de-DE").format(total)} </td>
                         {showCartComponents && <td></td>}
-                        
                     </tr>
-                   
+
                     { showCartComponents &&
-                    
-                    <tr>                        
-                        <td colspan="2"> <Button onClick={()=>handleVaciarCarrito()} variant="outline-danger">Vaciar el carrito <FontAwesomeIcon icon={faTrashAlt} /> </Button> </td>
-                        <td colspan="4"><Link to="../checkout"> <Button variant="outline-dark">Continuar la compra </Button> </Link> </td>
-                    </tr> }
+                        <tr>
+                            <td colSpan="2"> <Button onClick={() => handleVaciarCarrito()} variant="outline-danger">Vaciar el carrito <FontAwesomeIcon icon={faTrashAlt} /> </Button> </td>
+                            <td colSpan="4"><Link to="../checkout"> <Button variant="outline-dark">Continuar la compra </Button> </Link> </td>
+                        </tr>}
                 </React.Fragment>
             )
         }
@@ -60,25 +57,23 @@ export default function TablaResumen({textLastCol, array, handleEliminarProducto
 
     return (
         <div>
-            
             <Table striped bordered>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Producto</th>
-                    <th>cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Total</th>
-                    { showCartComponents &&  <th>{textLastCol}</th> }
-                    
-                </tr>
-            </thead>
-            <tbody>
-                {resumenCompra()}
-                
-            </tbody>
-        </Table>
-            
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Total</th>
+                        {showCartComponents && <th>{textLastCol}</th>}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {resumenCompra()}
+                </tbody>
+            </Table>
+
         </div>
     )
 }

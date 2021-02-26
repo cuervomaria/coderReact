@@ -1,44 +1,40 @@
-import React, {useState, useEffect} from "react"; //se importa el useContext
-import {Container, Row, Col, Button} from 'react-bootstrap';
+import React, { useState} from "react";
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import "./itemCount.css";
 
+// Componente que maneja la cantidad a agregar al carrito. Es renderizado por ItemDetail --> ItemDetailContainer. Recibe por props el stock del producto, el valor inicial del contador (dependiendo si el producto ya está o no en el carrito) y pasa por la función callback la cantidad seleccionada al componente ItemDetail.
+//Agrega o elimina cantidad, teniendo como restricción que no se puede seleccionar para un producto más que el stock disponible, ni menos que 0.
+//Si la cantidad seleccionada es 0, se deshabilita el botón de agregar. Si un producto ya fue agregado al carrito no deja volver a agregarlo y muestra un cartel de advertencia.
 
-const ItemCount = ({stock, initial, onAdd2}) => {
+
+
+const ItemCount = ({ stock, initial, onAdd2 }) => {
     console.log("initial", initial)
-const [cantidad, setCantidad] = useState(initial); 
- console.log("cantidad", cantidad)
+    const [cantidad, setCantidad] = useState(initial);
+    console.log("cantidad", cantidad)
 
-//  useEffect(() => {
-//      if(initial>1){
-//          setCantidad(initial)
-//      }
-//  }, [initial])
-
-
-const aumentar = ()=>{
-    
-    if(cantidad<stock){
-        setCantidad(cantidad+1);
-    }else{
-        alert("No es posible agregar más productos");
-    }
-};
-
-const disminuir = ()=>{
-    
-    if(cantidad===0){
-        alert("Ud no tiene productos agregados");
-    }else{
-        setCantidad(cantidad-1);
-    }
-};
+    //  useEffect(() => {
+    //      if(initial>1){
+    //          setCantidad(initial)
+    //      }
+    //  }, [initial])
 
 
+    const aumentar = () => {
+        if (cantidad < stock) {
+            setCantidad(cantidad + 1);
+        } else {
+            alert("No es posible agregar más productos");
+        }
+    };
 
-// const onAdd =() =>{
-//     cantidad === 0 ? alert("debe agregar productos para poder agregarlos al carrito") : console.log(cantidad) 
-    
-// }
+    const disminuir = () => {
+        if (cantidad === 0) {
+            alert("Ud no tiene productos agregados");
+        } else {
+            setCantidad(cantidad - 1);
+        }
+    };
 
     return (
         <div className="itemCount">
@@ -50,7 +46,7 @@ const disminuir = ()=>{
                 </Row>
                 <Row>
                     <Col className="d-flex justify-content-center ">
-                        <Button variant="outline-dark"  onClick={()=> onAdd2(cantidad)}>Agregar {cantidad} productos</Button>
+                        <Button variant="outline-dark" onClick={() => onAdd2(cantidad)} disabled={cantidad===0? true: false}>Agregar {cantidad} productos</Button>
                     </Col>
                 </Row>
             </Container>

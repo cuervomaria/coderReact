@@ -1,31 +1,28 @@
-import React, { useState, useContext } from "react";
-import { Card, Container, Button } from "react-bootstrap"
-// import { Link } from 'react-router-dom'
+import React, { useContext } from "react";
+import { Card, Container} from "react-bootstrap"
 import ItemCount from "../itemCount/ItemCount";
 import "./itemDetail.css"
 import { CartContext } from "../../context/CartContext";
 
+// Tarjeta del producto. Es renderizada en el ItemDetailContainer, quien le pasa toda la información del producto por props.
+//Renderiza el ItemCount, le pasa por props el stock y la cantidad inicial a mostrar, la cual depende de si el producto ya ha sido agregado al carrito (en cuyo caso muestra la cantidad agregada) o no ha sido agregado aún (en cuyo caso muestra 1).
+//Al darle click en agregar producto, agrega el mismo al cartContext (producto que recibe del ItemDetailContainer y cantidad que recibe del ItemCount)
+
 const ItemDetail = ({ producto }) => {
 
-    const {cart, addItem } = useContext(CartContext)
-    
+    const { cart, addItem } = useContext(CartContext)
 
-    // const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1);
-    // const [showButton, setShowButton] = useState(false)
+    //Función que pasa por callback al ItemCount. Al invocarla agrega el producto con la cantidad indicada al cartContext.
 
     const capturarQ = (value) => {
-        // setCantidadSeleccionada(value)
-        // setShowButton(true)
         console.log("producto", producto)
         console.log("cantidad", value)
         addItem(producto, value)
-        
     }
-// Utils
-        const index = cart.findIndex(prod=>prod.id===producto.id)
-        const initial = index ===-1 ? 1 : cart[index].cantidad
-        // console.log("index", index)
-        // console.log("initial", initial)
+
+    // Utils - para determinar el valor a mostrar como inicial en el ItemCount dependiendo si el producto ya está en el carrito o no.
+    const index = cart.findIndex(prod => prod.id === producto.id)
+    const initial = index === -1 ? 1 : cart[index].cantidad
 
     return (
         <Container>
@@ -34,38 +31,18 @@ const ItemDetail = ({ producto }) => {
                 <Card.Body>
                     <Card.Title>{producto.linea}</Card.Title>
                     <Card.Title>{producto.varietal}</Card.Title>
+                    <hr />
                     <Card.Text>
-                        <hr />
                         <b>Descripción:</b>{` ${producto.descripcion}`}
-                        <hr />
-                        <p><b>Precio:</b>{` $ ${producto.precio}`}</p>
                     </Card.Text>
-                    {/* <ItemCount stock={producto.cantidad} onAdd2={capturarQ} /> */}
-
-                    {/* {showButton ?
-                        <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> :
-                        <ItemCount stock={producto.cantidad} onAdd2={capturarQ} />} */}
-
-                       <ItemCount stock={producto.stock} onAdd2={capturarQ} initial={initial}/>
-                       
-                    {/* <Button variant="outline-dark" onClick={() => addItem({ producto }, cantidadSeleccionada)}>Terminar mi compra de {cantidadSeleccionada} productos</Button> */}
-
-                        {/* <p>Cantidad seleccionada {cantidadSeleccionada} a agregar</p>
-                    <ItemCount stock={producto.cantidad} onAdd2={()=> addItem({producto},cantidadSeleccionada)} /> */}
+                    <hr />
+                    <Card.Text>
+                        <b>Precio:</b> $ {new Intl.NumberFormat("de-DE").format(producto.precio)}
+                    </Card.Text>
+                    <ItemCount stock={producto.stock} onAdd2={capturarQ} initial={initial} />
                 </Card.Body>
             </Card>
         </Container>
-
-
-
-        // <div>
-                //     <img src={producto.img} alt={`${producto.linea} - ${producto.varietal}`} />
-        //     <h3>{producto.linea}</h3>
-        //     <h4>{producto.varietal}</h4>
-        //     <p><b>Precio:</b>{`$ ${producto.precio}`}</p>
-        //     <p><b>Descripción:</b>{`${producto.descripcion}`}</p>
-
-        // </div>
 
     )
 }

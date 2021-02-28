@@ -24,20 +24,23 @@ export const CartContextProvider = ({ children }) => {
     }, [cart])
 
 
-    //Método que agrega ítems al carrito. Es invocado en el botón de agregar al carrito del itemDetail. Se fija si el ID del producto que estoy queriendo agregar ya está en el carrito, entonces muestra una advertencia. Si no hay productos agregados al carrito con ese ID, lo agrega.
+    //Método que agrega ítems al carrito. Es invocado en el botón de agregar al carrito del itemDetail. Se fija si el ID del producto que estoy queriendo agregar ya está en el carrito, entonces elimina dicho item del carrito (filter) y luego lo vuelve a agregar con la nueva cantidad (es como si actualizara la cantidad a la nueva cantidad seleccionada). Si no hay productos agregados al carrito con ese ID, lo agrega.
     const addItem = (producto, cantidad) => {
         let index = cart.findIndex(item => item.id === producto.id)
-        if (index !== -1) {
-            alert("El producto ya se encuentra agregado al carrito")
-        } else {
-            setCart([...cart, {
-                "id": producto.id,
-                "linea": producto.linea,
-                "varietal": producto.varietal,
-                "precio": producto.precio,
-                "cantidad": cantidad
+        const productoAgregado = {
+            "id": producto.id,
+            "linea": producto.linea,
+            "varietal": producto.varietal,
+            "precio": producto.precio,
+            "cantidad": cantidad
+        }
 
-            }])
+        if (index !== -1) {
+            const newCart = cart.filter(item => item.id !== producto.id)
+            setCart([...newCart, productoAgregado])
+
+        } else {
+            setCart([...cart, productoAgregado])
         }
     }
 
@@ -49,8 +52,7 @@ export const CartContextProvider = ({ children }) => {
 
     //calcula la cantidad total de productos agregados al carrito. 
     const cantidadTotal = cart.reduce((acc, curr) => {
-        return (acc += curr.cantidad
-        )
+        return (acc += curr.cantidad)
     }, 0)
 
     //Elimina el producto seleccionado del carrito. Es invocado en el cart. Setea el cart con el array resultante de filtrar en el carrito actual todos aquellos items cuyo ID no coincide con el ID pasado por props.
@@ -63,10 +65,6 @@ export const CartContextProvider = ({ children }) => {
     const clearCart = () => {
         setCart([])
     }
-
-    useEffect(() => {
-        console.log("cart", cart)
-    }, [cart])
 
     return (
         <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, total, cantidadTotal }}>

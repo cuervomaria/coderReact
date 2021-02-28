@@ -21,15 +21,14 @@ export default function Order({ user }) {
 
     //Función que descuenta del stock la cantidad de productos comprados. Va recorriendo todos los productos del carrito, busca en la base de datos de firestore el documento que coincide con el ID del producto. Guarda el dato de stock de ese producto en una variable itemStock y luego actualiza dicho valor restándole la cantidad comprada en el cart. Itera con todos los items del carrito.
 
-    const handleStock = () => {        
-        cart.forEach(item => {            
+    const handleStock = () => {
+        cart.forEach(item => {
             const documentoItem = getFirestore().collection("vinos").doc(item.id)
             documentoItem.get()
-                .then((doc)=>{
-                    console.log("data", doc.data())
-            const itemStock= doc.data().stock
-            console.log("itemStock", itemStock)
-            documentoItem.update({stock:itemStock- item.cantidad})})
+                .then((doc) => {
+                    const itemStock = doc.data().stock
+                    documentoItem.update({ stock: itemStock - item.cantidad })
+                })
         });
 
     }
@@ -51,17 +50,16 @@ export default function Order({ user }) {
         setOrder(newOrder)
         orders.add(newOrder)
             .then(({ id }) => {
-                console.log(id)
                 setOrderId(id);
                 handleStock()
                 clearCart()
             }).catch(err => {
                 console.log("error", err)
             })
-            .finally(()=>{
-                   setLoading(false)    
-               })
-          
+            .finally(() => {
+                setLoading(false)
+            })
+
     }
 
     //Si la orden no ha sido aún confirmada muestra el resumen de la compra y el botón de confirmar. Al confirmar, dispara la función handleConfirmar, oculta el resumen y muestra un mensaje de agradecimiento por la comra con el ID de la orden de compra generada.
@@ -71,8 +69,8 @@ export default function Order({ user }) {
                 <div className="orderWrapper">
                     <h3>{user.name} este es el resumen de la compra que está por realizar</h3>
                     <div>
-                    <h5>Cantidad de productos: {cantidadTotal}</h5>
-                    <h5>Total: $ {new Intl.NumberFormat("de-DE").format(total)} </h5>
+                        <h5>Cantidad de productos: {cantidadTotal}</h5>
+                        <h5>Total: $ {new Intl.NumberFormat("de-DE").format(total)} </h5>
                     </div>
                     <button onClick={handleConfirmar}>Confirmar compra</button>
                 </div>
@@ -80,13 +78,13 @@ export default function Order({ user }) {
                 <div className="orderWrapper">
                     <h3> {user.name}, muchas gracias por su compra </h3>
                     <div>
-                    <h4> Su orden de compra es: </h4>
-                     { loading ? <Loading padTop={false} /> : <h4>{orderId}</h4> } 
+                        <h4> Su orden de compra es: </h4>
+                        {loading ? <Loading padTop={false} /> : <h4>{orderId}</h4>}
                     </div>
                     <Link to="../"> <Button variant="outline-dark">Volver al Home </Button></Link>
                 </div>
             }
-         
+
         </div>
     )
 }

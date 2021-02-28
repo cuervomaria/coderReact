@@ -13,8 +13,6 @@ export default function CartContainer() {
 
     const { cart, removeItem, total, cantidadTotal, clearCart } = useContext(CartContext)
 
-    console.log("cart", cart)
-
     // Función a mostrar si el carrito está vacío
     const carritoVacio = () => {
         return (
@@ -53,7 +51,6 @@ export default function CartContainer() {
                                 {carritoVacio()}
                             </tbody>
                         </Table>
-
                         :
                         <TablaResumen textLastCol="Eliminar producto" array={cart} handleEliminarProducto={removeItem} icono={faTrashAlt} cantidadTotal={cantidadTotal} total={total} handleVaciarCarrito={clearCart} showCartComponents={true} />
                 }

@@ -25,7 +25,6 @@ export default function UserForm({ showOrderDetail }) {
             alert("debe completar todos los campos")
         } else {
             showOrderDetail(true, user)
-            console.log('user', user)
         }
     }
 
@@ -34,10 +33,10 @@ export default function UserForm({ showOrderDetail }) {
             <h3> Por favor ingese sus datos:</h3>
             <br />
             <form className="formulario" onSubmit={handleEnviar}>
-                <input name="name" onChange={handleInputChange} type="text" placeholder="Nombre" value={user.userName} required />
-                <input name="email" onChange={handleInputChange} type="email" placeholder="email" value={user.userEmail} required />
-                <input name="email2" onChange={handleInputChange} type="email" placeholder="repita su email" value={user.userEmail2} required />
-                <input name="phone" onChange={handleInputChange} type="number" placeholder="número de teléfono" value={user.userPhone} required />
+                <input name="name" onChange={handleInputChange} type="text" placeholder="Nombre y Apellido" value={user.userName}  />
+                <input name="email" onChange={handleInputChange} type="email" placeholder="email" value={user.userEmail}  />
+                <input name="email2" onChange={handleInputChange} type="email" placeholder="repita su email" value={user.userEmail2}  />
+                <input name="phone" onChange={handleInputChange} type="number" placeholder="número de teléfono" value={user.userPhone}  />
                 <button type="submit">Enviar</button>
             </form>
         </div>

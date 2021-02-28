@@ -24,7 +24,6 @@ const ItemListContainer = ({ greetings }) => {
     //Sino trae los docs que coincide con la categoría seleccionada, guarda el ID de dicho doc/categoría en una variable y luego trae de la colección vinos todos los productos cuya categoría coincide con el ID de la categoría seleccionada.
     //Si el llamado viene vacío, quiere decir que no hay productos en dicha categoría y muestra un mensaje al respecto, sino trae todos los productos de dicha categoría y los setea en el estado Productos.
     useEffect(() => {
-        console.log("categoryName", { categoryName })
         setLoading(true)
         const db = getFirestore();
         if (categoryName === undefined) {
@@ -43,7 +42,6 @@ const ItemListContainer = ({ greetings }) => {
                             ...doc.data()
                         })
                     })
-                    console.log(arrayItems)
                     setProductos(arrayItems)
                 }).finally(() => {
                     setLoading(false)
@@ -54,19 +52,15 @@ const ItemListContainer = ({ greetings }) => {
             const categoryDocDb = db.collection("Category").where("name", "==", categoryName)
             categoryDocDb.get()
                 .then((categoryDoc) => {
-                    console.log(categoryDoc)
                     if (categoryDoc.size === 0) {
                         console.log("No results")
                         setIdExists(false)
                         setTexto("La categoría seleccionada no existe")
                     } else {
-                        console.log(categoryDoc.docs.id)
                         let categoryId = categoryDoc.docs.map(doc => doc.id)
-                        console.log("categoryId", categoryId)
                         const categoryItems = db.collection("vinos").where("categoryId", "==", categoryId[0])
                         categoryItems.get()
                             .then((queryFiltered) => {
-                                console.log(queryFiltered)
                                 if (queryFiltered.size === 0) {
                                     console.log("No results")
                                     setIdExists(false)
@@ -79,7 +73,6 @@ const ItemListContainer = ({ greetings }) => {
                                         ...doc.data()
                                     })
                                 })
-                                console.log("arrayFilteredItems", arrayFilteredItems)
                                 setProductos(arrayFilteredItems)
                             })
                     }

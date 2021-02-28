@@ -1,6 +1,6 @@
 # PROYECTO DE ECOMMERCE
 
-Este proyecto de ecommerce ha sido desarrollado en el marco de un curso de ReactJS en [Coderhouse](https://www.coderhouse.com).
+Este proyecto de ecommerce ha sido desarrollado en el marco de un curso de ReactJS en [Coderhouse](https://www.coderhouse.com) (Diciembre 2020 - Febrero 2021)
 
 Para crear la aplicación se utilizó [Create React App](https://github.com/facebook/create-react-app).
 

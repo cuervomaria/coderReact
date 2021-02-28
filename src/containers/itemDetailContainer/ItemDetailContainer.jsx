@@ -29,7 +29,6 @@ const ItemDetailContainer = () => {
                     setIdExists(false)
                     return
                 }
-                console.log("item found", doc)
                 setIdExists(true)
                 setItem({
                     id: doc.id,

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Card, Container} from "react-bootstrap"
+import { Card, Container } from "react-bootstrap"
 import ItemCount from "../itemCount/ItemCount";
 import "./itemDetail.css"
 import { CartContext } from "../../context/CartContext";
@@ -15,14 +15,12 @@ const ItemDetail = ({ producto }) => {
     //Función que pasa por callback al ItemCount. Al invocarla agrega el producto con la cantidad indicada al cartContext.
 
     const capturarQ = (value) => {
-        console.log("producto", producto)
-        console.log("cantidad", value)
         addItem(producto, value)
     }
 
-    // Utils - para determinar el valor a mostrar como inicial en el ItemCount dependiendo si el producto ya está en el carrito o no.
+    // Utils - para determinar el valor a mostrar como inicial en el ItemCount dependiendo si el producto ya está en el carrito o no. Si está en el carrito muestra la cantidad que hay en el carrito. Si no hay stock disponible muestra 0, sino muestra 1.
     const index = cart.findIndex(prod => prod.id === producto.id)
-    const initial = index === -1 ? 1 : cart[index].cantidad
+    const initial = index !== -1 ? cart[index].cantidad : producto.stock ===0? 0 : 1 
 
     return (
         <Container>
